@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/website-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("WEBSITE_DATABASE_URL")
+}
+
+model PartnerApplicationForm {
+  id                          String   @id @default(cuid())
+  status                      String    @default("pending")
+  businessName                String
+  contactPerson               String
+  businessAddress             String
+  phoneNumber                 String
+  email                       String
+  website                     String?
+  
+  typeOfBusiness              String
+  industryCategory            String
+  yearsInOperation            Int
+  businessRegistrationNumber  String
+  taxIdentificationNumber     String
+  
+  reasonForPartnership        String
+  servicesOrProductsOffered   String
+  geographicalCoverage        String
+  preferredCollaborationType  String
+  previousPartnerships        String?
+  
+  annualRevenue               String?
+  businessLicensesOrPermits   String
+  insuranceCoverage           String
+  
+  businessRegistrationCertificate String
+  taxIdentificationCertificate String?
+  portfolioOrReferences       String?
+  
+  declaration                 Boolean
+  consent                     Boolean
+  signature                   String
+  date                        String
+  createdAt                   DateTime @default(now())
+}
+
+model ClientInformationForm {
+  id                          String   @id @default(cuid())
+  status                      String    @default("pending")
+  fullName                    String
+  businessName                String?
+  phoneNumber                 String
+  email                       String
+  address                     String
+  preferredContactMethod      String
+  
+  businessType                String?
+  industryCategory            String?
+  taxIdentificationNumber     String?
+  businessRegistrationNumber  String?
+  annualRevenueRange          String?
+  numberOfEmployees           Int?
+  
+  servicesRequired            String[]
+  frequencyOfService          String
+  specificGoalsOrNeeds        String
+  currentAccountingSoftware   String?
+  preferredCommunicationSchedule String?
+  
+  bankAccountDetails          String?
+  creditLimit                 String?
+  billingAddress              String?
+  
+  businessRegistrationCertificate String?
+  taxIdentificationCertificate String?
+  financialStatements         String?
+  governmentIssuedID          String?
+  
+  declaration                 Boolean
+  consent                     Boolean
+  signature                   String
+  date                        String
+  createdAt                   DateTime @default(now())
+}
+
+model TaxFilingForm {
+  id                String   @id @default(cuid())
+  status            String   @default("pending")
+  name              String
+  birthday          String
+  phoneNumber       String
+  email             String
+  facebookName      String?
+  instagramName     String?
+  taxYear           String
+  cashAdvance       String
+  firstName         String
+  middleName        String?
+  lastName          String
+  ssn               String
+  streetAddress     String
+  addressLine2      String?
+  city              String
+  state             String
+  zipCode           String
+  occupation        String?
+  refundOption      String
+  createdAt         DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  status    String   @default("new")
+  name      String
+  email     String
+  phone     String
+  company   String
+  reason    String
+  subject   String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model ConsultationMessage {
+  id        String   @id @default(cuid())
+  status    String   @default("new")
+  name      String
+  email     String
+  phone     String
+  city      String
+  country   String
+  state     String
+  message   String   @default("Consultation Request")
+  createdAt DateTime @default(now())
+}
